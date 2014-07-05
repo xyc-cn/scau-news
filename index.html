@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="ch_CN">
+<head>
+    <script>
+            (function() {
+                if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
+                    var msViewportStyle = document.createElement("style");
+                    msViewportStyle.appendChild(
+                        document.createTextNode("@-ms-viewport{width:auto!important}")
+                    );
+                    document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
+                }
+            })();
+        </script>
+    <title>Document</title>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" type="text/css" href="css/icons.css" />
+    <link rel="stylesheet" type="text/css" href="css/af.ui.css" />
+    <link rel="stylesheet" type="text/css" href="css/basic.css" title="default" />
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <link rel="stylesheet" type="text/css" href="css/plugin.css">
+    <script type="text/javascript" charset="utf-8" src="./appframework.min.js"></script>
+    <script>           
+            if (!((window.DocumentTouch && document instanceof DocumentTouch) || 'ontouchstart' in window)) {
+                var script = document.createElement("script");
+                script.src = "plugins/af.desktopBrowsers.js";
+                var tag = $("head").append(script);
+            }
+        </script>
+    <!--项目中常用的一些插件-->
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.actionsheet.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.css3animate.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.passwordBox.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.scroller.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.selectBox.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.touchEvents.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.touchLayer.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./plugins/af.popup.js"></script>
+
+    <script type="text/javascript" charset="utf-8" src="./ui/src/appframework.ui.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ui/transitions/fade.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ui/transitions/flip.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ui/transitions/pop.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ui/transitions/slide.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ui/transitions/slideDown.js"></script>
+    <script type="text/javascript" charset="utf-8" src="./ui/transitions/slideUp.js"></script>
+    <script type="text/javascript" src="js/af.carousel.js"></script>
+
+    <script src="js/TouchSlide.1.1.js"></script>
+    <!--插件js文件-->
+    <script type="text/javascript" charset="utf-8" src="common.js"></script>
+    <script type="text/javascript" charset="utf-8" src="basic.js"></script>
+    <script>    
+
+            var swipestarts=false;
+            function inits(){
+                if(swipestarts!=true){
+                TouchSlide({ slideCell:"#leftTabBox" });
+                TouchSlide({ 
+            slideCell:"#slideBox",
+            titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+            mainCell:".bd ul", 
+            effect:"leftLoop", 
+            autoPage:true,//自动分页
+            autoPlay:true //自动播放
+             });
+            }
+            swipestarts=true;
+    
+            }
+            $.ui.ready(function(){ 
+                $("#afui").get(0).className='bb'; //设置属于那种风格 
+            });
+            TouchSlide({ slideCell:"#leftTabBox" });     
+            var webRoot = "./";   //定义网站的根目录
+            // $.os.android=true;
+            $.ui.autoLaunch = false;
+            $.ui.openLinksNewTab = false;
+            //$.ui.resetScrollers=false;
+            //这句话要加上
+            $(document).ready(function(){
+                   $.ui.launch();
+                   var imagesheight = document.getElementsByClassName("imageshs");
+                   var imageswidths=imagesheight[0].width;
+                   var imagesh = imageswidths/5.6*3;
+                   for(var i=0;i<imagesheight.length;i++){
+                    imagesheight[i].height=imagesh;
+                   }
+                   $('.navs li').on('click', function(event) {
+                   
+                           $('.navs li').removeClass('heightlight');
+                           $(event.target).addClass('heightlight');
+                           //alert($(event.target).html())
+                     
+                   });
+                   $.jsonP({   
+        url:serverURL+'news/getlist.php?callback=?&&page=0',
+        success:function(data){
+            var replayList='';  
+            var jsondata=data;    
+                        
+            for (var num=0;num<data.length;num++){
+                    replayList+='<li><a href="heat_content.html" data-refresh-ajax="true" onClick="setItem('+"'id',"+jsondata[num]['id']+')"><img src="images/photos/'+jsondata[num]['path']+'">;'
+                    replayList+= '<div class="hotside"><p class="bigfont">';
+                    replayList+=jsondata[num]['title']+'</p>';
+                    replayList+= '<p class="p_cont">'+jsondata[num]['cont']+'</p></div><span class="skim">10浏览</span></a></li> '         
+                             
+                             }       
+                
+                    
+                                  
+                $('.hotlist').append(replayList);
+            
+        
+        }
+    }); 
+     //数据请求结束
+
+            });            
+            /* This code is used to run as soon as appMobi activates */
+            var onDeviceReady = function () {
+                AppMobi.device.setRotateOrientation("portrait");
+                AppMobi.device.setAutoRotate(false);
+                webRoot = AppMobi.webRoot + "";
+                //hide splash screen
+                AppMobi.device.hideSplashScreen();
+                $.ui.blockPageScroll(); //block the page from scrolling at the header/footer
+                $.ui.launch();
+
+            };
+            document.addEventListener("intel.xdk.device.ready", onDeviceReady, false);
+            
+          </script>
+
+</head>
+
+<body>
+    <div id="afui">
+        <div id="content">
+            <div id="main" title="Welcome" class="panel" selected="true"  data-footer="none" data-header="headerui" data-load="inits">
+                <!-- 焦点图 -->
+                <div id="slideBox" class="slideBox">
+
+                    <div class="bd">
+                        <ul>
+                            <li>
+                                <a class="pic" href="#">
+                                    <img src="images/gallery/1b.jpg" class="imageshs"/>
+                                </a>
+                                <a class="tit" href="#">墨西哥教师罢工 与警察激烈冲突</a>
+                            </li>
+                            <li>
+                                <a class="pic" href="#">
+                                    <img src="images/gallery/2b.jpg" class="imageshs"/>
+                                </a>
+                                <a class="tit" href="#">日右翼游行纪念钓岛"国有化"周年</a>
+                            </li>
+                            <li>
+                                <a class="pic" href="#">
+                                    <img src="images/gallery/3b.jpg" class="imageshs"/>
+                                </a>
+                                <a class="tit" href="#">女兵竞选美国小姐鼓励女性自强</a>
+                            </li>
+                            <li>
+                                <a class="pic" href="#">
+                                    <img src="images/gallery/4b.jpg" class="imageshs"/>
+                                </a>
+                                <a class="tit" href="#">济南现“最窄人行道” 仅0.2米宽</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="hd">
+                        <ul></ul>
+                    </div>
+                </div>
+
+                <div class="topnews">
+                    <ul class="hotlist">
+                       
+
+                    </ul>
+                </div>
+                <!--end topnews-->
+                <!-- -->
+                <div class="newswrap">
+                    <ul class="navs">
+                        <li class=
+                    "heightlight">新闻中心</li>
+                        <li>媒体华农</li>
+                        <li>校园通告</li>
+                        <li>校园快讯</li>
+                    </ul>
+                    <article>
+                        <ul class="infos">
+                            <li>
+                                <a href="">校园快讯校园快讯</a>
+                            </li>
+                            <li>
+                                <a href="">校园快讯校园快讯</a>
+                            </li>
+                            <li>
+                                <a href="">校园快讯校园快讯</a>
+                            </li>
+                            <li>
+                                <a href="">校园快讯校园快讯</a>
+                            </li>
+                            <li>
+                                <a href="">校园快讯校园快讯</a>
+                            </li>
+                        </ul>
+                    </article>
+                    <a href="" class="loadmore">加载更多</a>
+                </div>
+
+                <div id="leftTabBox" class="tabBox">
+                    <div class="hd">
+                        <ul>
+                            <li>
+                                <a>国内</a>
+                            </li>
+                            <li>
+                                <a>国际</a>
+                            </li>
+                            <li>
+                                <a>时事</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="bd">
+                        <ul>
+                            <li>
+                                <a href="#">官方明确感染H7N9高危人群</a>
+                            </li>
+                            <li>
+                                <a href="#">台官员:将驱离进入钓岛大陆船</a>
+                            </li>
+                            <li>
+                                <a href="#">陈云长子吁学江泽民思想方法</a>
+                            </li>
+                            <li>
+                                <a href="#">央视批抗日剧目:比着俗争着二</a>
+                            </li>
+                            <li>
+                                <a href="#">网友:离3次结3次可避税国五条</a>
+                            </li>
+                            <li>
+                                <a href="#">足疗女子自称东北人引发血案</a>
+                            </li>
+                            <li>
+                                <a href="#">男性神秘“根浴”会所被调查</a>
+                            </li>
+                            <li>
+                                <a href="#">女孩一年吃掉48公里长方便面</a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="#">日:沈阳军区部队开赴中朝边境</a>
+                            </li>
+                            <li>
+                                <a href="#">印度核潜艇经我周边未被发现</a>
+                            </li>
+                            <li>
+                                <a href="#">中国航母战斗群重防空轻反潜</a>
+                            </li>
+                            <li>
+                                <a href="#">日本军车爆车胎造成一死一伤</a>
+                            </li>
+                            <li>
+                                <a href="#">韩媒称朝鲜导弹反复出仓回仓</a>
+                            </li>
+                            <li>
+                                <a href="#">美国空军因缺钱大量战机停飞</a>
+                            </li>
+                            <li>
+                                <a href="#">外媒:中国神盾舰多处落后日本</a>
+                            </li>
+                            <li>
+                                <a href="#">朝鲜东部海岸遍布导弹发射场</a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <a href="#">农业占GDP低政府支持力度大</a>
+                            </li>
+                            <li>
+                                <a href="#">林志玲:至今珍藏本山送的手绢</a>
+                            </li>
+                            <li>
+                                <a href="#">五粮液高管年薪超茅台近一倍</a>
+                            </li>
+                            <li>
+                                <a href="#">视频:朝鲜导弹反复出舱</a>
+                            </li>
+                            <li>
+                                <a href="#">《我是歌手》明晚决赛开战</a>
+                            </li>
+                            <li>
+                                <a href="#">皖新传媒一年花13亿委托理财</a>
+                            </li>
+                            <li>
+                                <a href="#">男子驾车在高速路遭飞石袭击</a>
+                            </li>
+                            <li>
+                                <a href="#">东北低温寒冷程度历史罕见</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            <nav id="forum_nav">
+                <ul class="list side_nav">
+                    <li>
+                        <a onclick='af.ui.toggleSideMenu()'>返回</a>
+                    </li>
+                    <li class="divider">招生在线</li>
+                    <li>
+
+                        <a href="#aftransitions">本科生</a>
+                    </li>
+                    <li>
+
+                        <a href="#afuidemo">研究生</a>
+                    </li>
+                    <li>
+                        <a href="#uiapi">继续教育</a>
+                    </li>
+                    <li>
+                        <a href="#uiapi">国际招生</a>
+                    </li>
+                    <li class="divider">就业在线</li>
+                    <li>
+                        <a href="#aftransitions">就业信息平台</a>
+                    </li>
+                    <li>
+                        <a href="#afuidemo">学生职业规划园</a>
+                    </li>
+
+                    <li class="divider">人才招聘</li>
+                    <li>
+                        <a href="#aftransitions">需求信息</a>
+                    </li>
+                    <li>
+                        <a href="#afuidemo">招聘启事</a>
+                    </li>
+
+                    <li class="divider">校友</li>
+                    <li>
+                        <a href="#aftransitions">校友会</a>
+                    </li>
+                    <li>
+                        <a href="#afuidemo">校友风采</a>
+                    </li>
+                    <li>
+                        <a href="#afuidemo">校友刊物</a>
+                    </li>
+                    <li>
+                        <a href="#afuidemo">百年校庆</a>
+                    </li>
+                    <li class="divider">网络服务</li>
+                    <li>
+                        <a href="#aftransitions">教育在线</a>
+                    </li>
+                    <li>
+                        <a href="#afuidemo">教务在线</a>
+                    </li>
+                    <li>
+                        <a href="#afuidemo">教学资源</a>
+                    </li>
+                    <li>
+                        <a href="#afuidemo">网络电视</a>
+                    </li>
+                    <li>
+                        <a href="#afuidemo">网络保修</a>
+                    </li>
+                    <li class="divider">教育基金会</li>
+
+                </ul>
+            </nav>
+        </div>
+
+        <!--header-->
+        <header id="headerui">
+            <a style="float:right;" onclick='af.ui.toggleSideMenu()' class='menuButton'></a>
+            <h1>华农新闻</h1>
+
+        </header>
+        <footer id ="footerui"></footer>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+<div id="contentDIV" style="padding-bottom:100px;">
+    <style type="text/css">
+    .reply_list p{
+        text-align: center;
+
+    }</style>
+    <div id="replay_first">
+       
+        
+    </div>    
+    
+    <div class="reply_content" id="reply_content">
+     
+         
+         
+    </div>
+    <script type="text/javascript">
+    $.ui.setBackButtonText('返回');   
+    $.ui.setTitle('帖子详细页');
+    $.ui.toggleNavMenu();
+    
+    var id=getItem('id');
+
+    //数据请求开始
+    $.jsonP({   
+        url:serverURL+'news/GetHot.php?callback=?&&id='+id,
+        success:function(data){
+           	var replayList='';  
+            var jsondata=data;    
+                        
+            
+                    replayList+='<div class="reply_list">';
+                    replayList+='<div class="clearfix forum_content_user">';
+                    replayList+='<img src="images/user.gif"  class="user_left"/> ';                      
+                    replayList+='<div class="user_left">';
+                    replayList+='<span>'+jsondata[0][0]+'</span><br />';     
+                    replayList+='<span>发表于'+jsondata[0][1]+'</span>';          
+                    replayList+='</div>';        
+                    replayList+='</div>';      
+                    replayList+='<p>'+jsondata[0][2]+'</p>';    
+                    replayList+='</div>';           
+                                    
+                
+                    
+                                  
+                
+            
+            //append到回复的内容中
+            $('#reply_content').append(replayList);
+        }
+    }); 
+     //数据请求结束
+    
+    
+
+        
+        
+ $("#contentDIV").scroller({useJsScroll:true});
+ 
+ 
+ // 加载更多的回复帖子
+ 
+var replyPage=1;
+function replayListMore(){
+    $.jsonP({
+       url:serverURL+'/GetHotReplay?id='+id+'&callback=?', 
+        success:function(data){
+         alert("message")          
+        }
+    }); 
+    
+}
+ 
+ 
+  //回帖
+ function showPopupPost() {
+    $("#afui").popup({
+        title: "回复帖子",
+        message: "<textarea id='post_content' rows='6' placeholder='请填写您要回复的内容'></textarea>",
+        cancelText: "取消",
+        cancelCallback: function () {},
+        doneText: "确定",
+        doneCallback: function () {
+            //处理登录的一些操作
+            alert("回复帖子操作");
+        },
+        cancelOnly: false
+    });
+}
+
+</script>
+    <p class="center"><a class="button" href="javascript:replayListMore();" id="loadmore">加载更多</a></p>
+    
+    
+</div>

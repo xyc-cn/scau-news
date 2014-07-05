@@ -1,0 +1,108 @@
+ .topnews{
+        margin-top: 10px;
+        width: 100%;
+        margin-bottom: 10px;
+
+    }
+    .topnews ul li{
+        position: relative;
+        padding: 15px 0;
+        width: 100%;
+        height: 80px;
+        border-top: 1px solid #efefef;
+        border-bottom: 1px solid #efefef;
+        box-shadow: 2px 2px #EEE;
+    }
+    .topnews ul li img{
+        float:left;
+        height: 60px;
+        width: 80px;
+        display: inline;
+    }
+    .topnews ul li div{
+        padding-left: 10px;
+        float:left;
+        height: 100%;
+        width: 60%;
+        display: inline;
+         overflow: hidden;
+    }
+    .bigfont{
+        margin: 0 0 0 0 !important;
+        overflow: hidden;
+        line-height: 1.3em!important;
+        font-size: 1.3em !important;
+    }
+    .p_cont{
+        font-size: 0.8em !important;
+        margin: 0 0 0 0 !important;
+        color: #808080;
+    }
+    .skim{
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+        color: #000;
+        font-size: 0.8em !important;
+    }
+    .newswrap{
+        margin-top: 20px;
+        width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .navs{
+        list-style: none;
+        width: 100%;
+        height: 40px;
+        background-color: #eee;
+        border-top: solid 1px #cecece;
+        margin-bottom: 10px;
+    }
+    .navs li{
+        margin-right: 3%;
+        float: left;
+        font-size: 1em;
+        line-height: 2.5em;
+    }
+    .heightlight{
+        margin-left: 1%;
+        line-height: 2 !important;
+        font-size: 1.3em !important;
+        margin-right: 5%;
+        color: #4d86c6;
+    }
+    .infos{
+        list-style: none;
+    }
+    .infos li{
+        list-style: none;
+        border-bottom: 1px dashed #999;
+        height: 35px;
+        width: 100%;
+    }
+    .infos li a{
+        width: 100%;
+        display: block;
+        text-decoration: none;
+        
+        line-height: 35px;
+        height: 35px;
+        color: #000;
+    }
+    .loadmore{
+        margin-top: 10px;
+        text-align: center;
+        width: 100%;
+        height: 30px;
+        display: block;
+        background-color: #eee;
+        line-height: 30px;
+        text-decoration: none;
+        color: #000;
+    }
+    .hotside{
+        word-wrap:bread-word;
+    }
+    
+   

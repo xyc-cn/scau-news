@@ -1,0 +1,236 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <meta http-equiv="pragma" content="no-cache"> 
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate"> 
+<meta http-equiv="expires" content="Wed, 26 Feb 1997 08:21:57 GMT">
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
+    <link rel="stylesheet" type="text/css" href="css/bg3.css">
+    <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="ueditor/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="ueditor/lang/zh-cn/zh-cn.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <style type="text/css">
+    .fi{
+    }
+    .se{
+    }
+    .lists{
+        -webkit-border-radius: 6px;
+        -khtml-border-radius: 6px;
+        -moz-border-radius: 6px;            
+        border-radius: 6px;
+        -webkit-box-shadow: 0px 0px 2px #69635a;
+        -moz-box-shadow: 0px 0px 2px #69635a;
+        box-shadow: 0px 0px 2px #69635a;
+        width: 100%;
+        background-color: #fff;
+        overflow: hidden;
+        border: solid 1px #eee;
+        font-weight: bold;
+    }
+    .lists li{
+        font-size: 20px;
+        height: 40px;
+        line-height: 40px;
+        border-bottom: solid 1px #eee;
+    }
+    .lists li:last-child{
+        border-bottom:0px;
+    }
+    .lists li a{
+        display: block;
+        width: 100%;
+        height: 100%;
+        padding-left: 10px;
+    }
+    .lists li:hover{
+        background-color: #0088cc;
+    }
+     .lists li a:hover{
+        color: #fff;
+    }
+    #footer{
+        margin: 0 0 0 0;
+        width: 100%;
+        height: 100px;
+        background: #000;
+        background-color: #96dd3b;
+    }
+    .main{
+        position: relative;
+        width: 100%;
+        min-height: 760px;
+        background-color: #fff;
+        -webkit-border-radius: 6px;
+        -khtml-border-radius: 6px;
+        -moz-border-radius: 6px;            
+        border-radius: 6px;
+        margin-bottom: 20px;
+        -webkit-box-shadow: 0px 0px 2px #69635a;
+        -moz-box-shadow: 0px 0px 2px #69635a;
+        box-shadow: 0px 0px 2px #69635a;
+    }
+    .main button{
+        position: absolute;
+        right: 5px;
+        top: 5px;
+    }
+    .main_list{
+        padding-top: 50px;
+        padding-bottom: 10px;
+        width: 100%;
+
+
+    }
+    .main_list li{
+        position: relative;
+        width: 100%;
+        height: 200px;
+        margin-bottom: 5px;
+        border-bottom: solid 2px #ddd;
+        overflow: hidden;
+    }
+    .main h2{
+        position: absolute;
+        top: 0px;
+        left: 10px;
+        font-weight: bold;
+                font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+                color: #0088ff;
+
+    }
+    #footer h4{
+        font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+        font-weight: bold;
+        position: relative;
+        left: 10px;
+        font-size: 16px;
+        color: #fff;
+        text-align: center;
+
+    }
+     .main_list li h4{
+        font-family: "ff-tisa-web-pro-1","ff-tisa-web-pro-2","Lucida Grande","Helvetica Neue",Helvetica,Arial,"Hiragino Sans GB","Hiragino Sans GB W3","Microsoft YaHei UI","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+        font-weight: bold;
+        position: relative;
+        left: 10px;
+        font-size: 16px;
+
+    }
+    .main_list li p{
+        border-top: solid 1px #dc2;
+        margin-top: 20px;
+        width: 98%;
+        margin-left: 1%;
+        margin-right: 1%;
+        white-space: pre-wrap;
+    }
+     .main_list li .dele{
+        position: absolute;
+        top: 20px;
+        left: 40px;
+        border-bottom: none;
+    }
+    .main_list li .edit{
+        position: absolute;
+        top: 20px;
+        left: 10px;
+        border-bottom: none;
+    }
+    .cont{
+        position: relative;
+        background: #fff;
+        min-height: 750px;
+        margin-bottom: 10px;
+        } 
+    .cont ul{
+        width: 100%;
+        margin-left: 5px;
+        padding-top: 40px;
+        margin-bottom: 5px;
+    }
+    .cont ul li{
+        margin-left: 2.5%;
+        width: 45%;
+        float: left;
+    }
+    .cont ul li img{
+        display: inline-block;
+        width: 100%;
+        height: 250px;
+
+    }
+    .cont h3{
+        color: red;
+        padding-top: 20px;
+        text-align: center;
+        margin: 0 0 0 0 ;
+    }
+    #submit{
+        position: absolute;
+        bottom: 5px;
+        right: 2.5%;
+    }
+
+   
+        </style>
+</head>
+<body>
+    <h1>Scau News Web Background</h1>
+    <div class="container-fluid">
+  <div class="row-fluid">
+    <div class="span2 fi">
+    <ul class="lists">
+        <li><a href="">顶层新闻</a></li>
+        <li><a href="">首页轮播</a></li>
+        <li><a href="">新闻中心</a></li>
+        <li><a href="">校园通告</a></li>
+        <li><a href="">媒体华农</a></li>
+        <li><a href="">校园快讯</a></li>
+    </ul>
+
+    </div>
+    <div class="span10">
+
+       
+      <div class="cont">
+        <h3>注意，提交前请将文件名修改为1b.jpg,2b.jpg,3b.jpg,4b.jpg</h2>
+        <form action="upload.php" method="post"
+                                enctype="multipart/form-data">
+        <ul>
+        <li><img src="images/gallery/1b.jpg">
+            <input type="file" name="file">
+        </li>
+        <li><img src="images/gallery/2b.jpg">
+        <input type="file"  name="file1"></li>
+        <li><img src="images/gallery/3b.jpg">
+        <input type="file"  name="file2"></li>
+        <li><img src="images/gallery/4b.jpg">
+        <input type="file"  name="file3"></li>
+        </ul>
+       
+        <input type="submit" id ="submit" class="btn info-btn">
+        </form>
+      </div>
+   
+
+    </div>
+  </div>
+</div>
+    <div id="footer">
+        <br>
+        <h4>scau news background</h4>
+        <h4>powered by cheng</h4>
+    </div>
+    <script src="http://code.jquery.com/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+</html>

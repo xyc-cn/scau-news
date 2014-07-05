@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <style type="text/css">
+        .footer{
+            width: 100%;
+            height: 300px;
+            background :url(images/dd.jpg);
+            position: relative;
+            bottom: 0px;
+            z-index: 80;
+        }
+        .loginbox{
+            position: relative;
+            background :url(images/logins.png);
+            -ms-background-position-y: -90px;
+            background-position-y: -90px;
+            width: 800px;
+            height: 400px;
+            z-index: 1000;
+            position: relative;
+            bottom: -80px;
+            margin: 0 auto;
+        }
+        .username{
+            width: 120px;
+            position: absolute;
+            left: 360px;
+            top: 180px;
+            height: 16px;
+        }
+        .password{
+            width: 120px;
+            position: absolute;
+            left: 360px;
+            top: 215px;
+            height: 16px;
+        }
+        .sub{
+            width: 45px;
+            height: 20px;
+            position: absolute;
+            left: 327px;
+            top: 252px;
+            opacity: 0;
+        }
+        .ret{
+            width: 45px;
+            height: 20px;
+            position: absolute;
+            left: 410px;
+            top: 252px;
+            opacity: 0;
+        }
+        #loginsubimt{
+            cursor: pointer;
+        }
+        .infos{
+            position: absolute;
+            left: 337px;
+            top: 152px;
+            width: 200px;
+            height: 30px;
+            color: #fff
+        }
+        .hotlist li{
+            overflow: hidden;
+        }
+    </style>
+    <script src="js/jquery.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('.infos').hide();
+            var username= document.getElementsByClassName('username');
+            var password= document.getElementsByClassName('password');
+            $('#loginsubimt').click(function(){
+
+            $.get('http://localhost/news/login.php',{user:username[0].value,pass:password[0].value}, function(data) {
+                if(data=='no'){
+                   $('.infos').html("输入不能为空");
+                   $('.infos').show();
+                   setTimeout(function(){$('.infos').hide();},3000)
+                }
+                if(data=='error'){
+                     $('.infos').html("账号或者密码错误");
+                   $('.infos').show();
+                   setTimeout(function(){$('.infos').hide();},3000)
+                }
+                if(data=='ok'){
+                    location.href='back_index.php'
+                }
+            });});
+            document.onkeydown=function(event){
+                var e = event || window.event || arguments.callee.caller.arguments[0];
+                if(e && e.keyCode==13){
+                        $.get('http://localhost/news/login.php',{user:username[0].value,pass:password[0].value}, function(data) {
+                if(data=='no'){
+                   $('.infos').html("输入不能为空");
+                   $('.infos').show();
+                   setTimeout(function(){$('.infos').hide();},3000)
+                }
+                if(data=='error'){
+                     $('.infos').html("账号或者密码错误");
+                   $('.infos').show();
+                   setTimeout(function(){$('.infos').hide();},3000)
+                }
+                if(data=='ok'){
+                    location.href='back_index.php'
+                }
+            });
+                }
+            }
+        });
+    </script>
+</head>
+
+<body>
+
+<div class="loginbox">
+    <div class="infos"></div>
+    <form>
+        <input class="username">
+        <input class="password" type="password">
+        <div id="loginsubimt" class="sub"></div>
+        <button type="reset" class="ret"></button>
+    </form>
+</div>
+<div class="footer">
+</div>
+<script src="js/bootstrap.min.js"></script>
+</body>
+</html>
