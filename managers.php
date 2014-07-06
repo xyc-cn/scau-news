@@ -41,4 +41,12 @@ class managers {
         $result = mysql_query($q);
         return $result;
     }
+    function gettypes($page,$type){
+        $dbs = new db('localhost','root','root');
+        $cons=$dbs->connect();
+        $q="SELECT * FROM diary WHERE types = '".$type."' limit ".$page.",4";
+        mysql_select_db("news", $cons);
+        $result = mysql_query($q);
+        return $result;
+    }
 } 

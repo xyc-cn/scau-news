@@ -53,85 +53,83 @@
     <script type="text/javascript" charset="utf-8" src="common.js"></script>
     <script type="text/javascript" charset="utf-8" src="basic.js"></script>
     <script>    
-
-            var swipestarts=false;
-            function inits(){
-                if(swipestarts!=true){
-                TouchSlide({ slideCell:"#leftTabBox" });
-                TouchSlide({ 
-            slideCell:"#slideBox",
-            titCell:".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
-            mainCell:".bd ul", 
-            effect:"leftLoop", 
-            autoPage:true,//自动分页
-            autoPlay:true //自动播放
-             });
-            }
-            swipestarts=true;
+       
+    $.ui.ready(function() {
+        $("#afui").get(0).className = 'bb'; //设置属于那种风格 
+    });
     
-            }
-            $.ui.ready(function(){ 
-                $("#afui").get(0).className='bb'; //设置属于那种风格 
-            });
-            TouchSlide({ slideCell:"#leftTabBox" });     
-            var webRoot = "./";   //定义网站的根目录
-            // $.os.android=true;
-            $.ui.autoLaunch = false;
-            $.ui.openLinksNewTab = false;
-            //$.ui.resetScrollers=false;
-            //这句话要加上
-            $(document).ready(function(){
-                   $.ui.launch();
-                   var imagesheight = document.getElementsByClassName("imageshs");
-                   var imageswidths=imagesheight[0].width;
-                   var imagesh = imageswidths/5.6*3;
-                   for(var i=0;i<imagesheight.length;i++){
-                    imagesheight[i].height=imagesh;
-                   }
-                   $('.navs li').on('click', function(event) {
-                   
-                           $('.navs li').removeClass('heightlight');
-                           $(event.target).addClass('heightlight');
-                           //alert($(event.target).html())
-                     
-                   });
-                   $.jsonP({   
-        url:serverURL+'news/getlist.php?callback=?&&page=0',
-        success:function(data){
-            var replayList='';  
-            var jsondata=data;    
-                        
-            for (var num=0;num<data.length;num++){
-                    replayList+='<li><a href="heat_content.html" data-refresh-ajax="true" onClick="setItem('+"'id',"+jsondata[num]['id']+')"><img src="images/photos/'+jsondata[num]['path']+'">;'
-                    replayList+= '<div class="hotside"><p class="bigfont">';
-                    replayList+=jsondata[num]['title']+'</p>';
-                    replayList+= '<p class="p_cont">'+jsondata[num]['cont']+'</p></div><span class="skim">10浏览</span></a></li> '         
-                             
-                             }       
-                
-                    
-                                  
-                $('.hotlist').append(replayList);
-            
-        
+    var webRoot = "./"; //定义网站的根目录
+    // $.os.android=true;
+    $.ui.autoLaunch = false;
+    $.ui.openLinksNewTab = false;
+    //$.ui.resetScrollers=false;
+    //这句话要加上
+    $(document).ready(function() {
+        $.ui.launch();
+        <!--图片高度调整 -->
+        var imagesheight = document.getElementsByClassName("imageshs");
+        var imageswidths = imagesheight[0].width;
+        var imagesh = imageswidths / 5.6 * 3;
+        for (var i = 0; i < imagesheight.length; i++) {
+            imagesheight[i].height = imagesh;
         }
-    }); 
-     //数据请求结束
+        <!--图片高度调整 -->
+        getdatas('校园快讯',0);
+        getdatas('媒体华农',0);
+        getdatas('校园通告',0);
+        getdatas('新闻中心',0);
+        $('.infos').append(getItem('新闻中心'));
+        $('.navs li').on('click', function(event) {
 
-            });            
-            /* This code is used to run as soon as appMobi activates */
-            var onDeviceReady = function () {
-                AppMobi.device.setRotateOrientation("portrait");
-                AppMobi.device.setAutoRotate(false);
-                webRoot = AppMobi.webRoot + "";
-                //hide splash screen
-                AppMobi.device.hideSplashScreen();
-                $.ui.blockPageScroll(); //block the page from scrolling at the header/footer
-                $.ui.launch();
+            $('.navs li').removeClass('heightlight');
+            $(event.target).addClass('heightlight');
+            $('.infos').html('')
+            $('.infos').html(getItem($(event.target).html()));
+            //alert($(event.target).html())
 
-            };
-            document.addEventListener("intel.xdk.device.ready", onDeviceReady, false);
+        });
+        $(".loadmore").on('click', function(event) {
             
+            getdatas($('.heightlight').html(),1);
+            $('.infos').html(getItem($('.heightlight').html()));
+        });
+
+        $.jsonP({
+            url: serverURL + 'news/getlist.php?callback=?&&page=0',
+            success: function(data) {
+                var replayList = '';
+                var jsondata = data;
+
+                for (var num = 0; num < data.length; num++) {
+                    replayList += '<li><a href="heat_content.html" data-refresh-ajax="true" onClick="setItem(' + "'id'," + jsondata[num]['id'] + ')"><img src="images/photos/' + jsondata[num]['path'] + '">;'
+                    replayList += '<div class="hotside"><p class="bigfont">';
+                    replayList += jsondata[num]['title'] + '</p>';
+                    replayList += '<p class="p_cont">' + jsondata[num]['cont'] + '</p></div><span class="skim">10浏览</span></a></li> '
+
+                }
+
+
+
+                $('.hotlist').append(replayList);
+
+
+            }
+        });
+        //数据请求结束
+
+    });
+    /* This code is used to run as soon as appMobi activates */
+    var onDeviceReady = function() {
+        AppMobi.device.setRotateOrientation("portrait");
+        AppMobi.device.setAutoRotate(false);
+        webRoot = AppMobi.webRoot + "";
+        //hide splash screen
+        AppMobi.device.hideSplashScreen();
+        $.ui.blockPageScroll(); //block the page from scrolling at the header/footer
+        $.ui.launch();
+
+    };
+    document.addEventListener("intel.xdk.device.ready", onDeviceReady, false);
           </script>
 
 </head>
@@ -178,10 +176,7 @@
                 </div>
 
                 <div class="topnews">
-                    <ul class="hotlist">
-                       
-
-                    </ul>
+                    <ul class="hotlist"></ul>
                 </div>
                 <!--end topnews-->
                 <!-- -->
@@ -195,24 +190,10 @@
                     </ul>
                     <article>
                         <ul class="infos">
-                            <li>
-                                <a href="">校园快讯校园快讯</a>
-                            </li>
-                            <li>
-                                <a href="">校园快讯校园快讯</a>
-                            </li>
-                            <li>
-                                <a href="">校园快讯校园快讯</a>
-                            </li>
-                            <li>
-                                <a href="">校园快讯校园快讯</a>
-                            </li>
-                            <li>
-                                <a href="">校园快讯校园快讯</a>
-                            </li>
+                           
                         </ul>
                     </article>
-                    <a href="" class="loadmore">加载更多</a>
+                    <a href="#" class="loadmore">加载更多</a>
                 </div>
 
                 <div id="leftTabBox" class="tabBox">

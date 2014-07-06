@@ -1,43 +1,47 @@
-// JavaScript Document
-//http://www.phonegap100.com/appapi.php?a=getThreadCate&callback=?
+    <!--水平滑动 -->
+    var swipestarts = false;
 
-/*
+    function inits() {
+        if (swipestarts != true) {
+            TouchSlide({
+                slideCell: "#leftTabBox"
+            });
+            TouchSlide({
+                slideCell: "#slideBox",
+                titCell: ".hd ul", //开启自动分页 autoPage:true ，此时设置 titCell 为导航元素包裹层
+                mainCell: ".bd ul",
+                effect: "leftLoop",
+                autoPage: true, //自动分页
+                autoPlay: true //自动播放
+            });
+        }
+        swipestarts = true;
+    }
+    TouchSlide({
+        slideCell: "#leftTabBox"
+    });
+    <!--水平滑动 -->
 
-$.jsonP({			
-		url:'http://jsfiddle.net/echo/jsonp/?test=some+html+content&callback=?',	
-		success:function(data){
-			//$('#af23_content').html(data.test)						
-			alert(data['test']);
-				
-		}
-	});	
 
+    function getdatas(datatype,page) {
+        var replayList ='';
+        
+        $.jsonP({
+            url: serverURL + 'news/gettype.php?callback=?&&datatype=' + datatype+'&&page='+page,
+            async:false,
+            success: function(data) {
+                var jsondata = data;
 
-*/
+                for (var num = 0; num < data.length; num++) {
+                   replayList+='<li><a href="heat_content.html" data-refresh-ajax="true" onClick="setItem('+"'id'"+',';
+                   replayList+=jsondata[num]['id']+')">'+jsondata[num]['title']+'</a></li>';
 
-function getThreadCate(){
-	$.jsonP({		
-			url:serverURL+'/appapi.php?a=getThreadCate&callback=?',	
-			//http://www.phonegap100.com/appapi.php?a=getThreadCate&callback=?
-			success:function(data){				
-					alert(data['result'][1]['name']);
-				//alert(data['result'][0]['name']);
-				//获取一级分类第一个的名称
-				//console.log(data['result'][0]['name']+'111');
-				//获取一级分类下的子分类的第一个分类名称
-				//console.log(data['result'][0]['subcate'][0]['name']+'111');
-				var jsondata=data['result'];
-				var str='';
-				for(var i=0;i<jsondata.length;i++){
-					str+='<li class="divider">'+jsondata[i].name+'</li>';
-					var subcatedata=jsondata[i]['subcate'];//获取二级分类						
-					for(var j=0;j<subcatedata.length;j++){
-						str+='<li><a href="#forum_list_panel"><img class="forum_list_img" src="images/forum_new.gif" />'+subcatedata[j]['name']+'</a></li>';
-												
-					}
-					
-				}				
-				$('#listForumCate').append(str);
-			}
-		});			
-}
+                }
+                
+                	setItem(datatype,replayList);
+            }
+        });
+        
+
+    }
+    
