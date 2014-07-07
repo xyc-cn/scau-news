@@ -3,12 +3,16 @@
     .reply_list p{
         text-align: center;
 
-    }</style>
-    <div id="replay_first">
-       
-        
-    </div>    
-    
+    }
+    .loading{
+        padding-top: 40px;
+        padding-bottom: 40px;
+        text-align: center;
+    }
+    </style>
+    <p class="loading">
+        <img src="images/loading.gif">
+    </p>
     <div class="reply_content" id="reply_content">
      
          
@@ -16,7 +20,7 @@
     </div>
     <script type="text/javascript">
     $.ui.setBackButtonText('返回');   
-    $.ui.setTitle('帖子详细页');
+    $.ui.setTitle('loading');
     $.ui.toggleNavMenu();
     
     var id=getItem('id');
@@ -25,16 +29,15 @@
     $.jsonP({   
         url:serverURL+'news/GetHot.php?callback=?&&id='+id,
         success:function(data){
+
            	var replayList='';  
             var jsondata=data;    
-                        
+                        $.ui.setTitle(jsondata[0][1]);
             
                     replayList+='<div class="reply_list">';
                     replayList+='<div class="clearfix forum_content_user">';
-                    replayList+='<img src="images/user.gif"  class="user_left"/> ';                      
-                    replayList+='<div class="user_left">';
-                    replayList+='<span>'+jsondata[0][0]+'</span><br />';     
-                    replayList+='<span>发表于'+jsondata[0][1]+'</span>';          
+                   
+                    replayList+='<span>'+jsondata[0][0]+'</span><br />';              
                     replayList+='</div>';        
                     replayList+='</div>';      
                     replayList+='<p>'+jsondata[0][2]+'</p>';    
@@ -46,6 +49,7 @@
                 
             
             //append到回复的内容中
+            $('.loading').hide();
             $('#reply_content').append(replayList);
         }
     }); 

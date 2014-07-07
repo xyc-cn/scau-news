@@ -44,4 +44,30 @@
         
 
     }
+
+    function gethot(){
+        
+        $.jsonP({
+            url: serverURL + 'news/getlist.php?callback=?&&page=0',
+            success: function(data) {
+                var replayList = '';
+                var jsondata = data;
+
+                for (var num = 0; num < data.length; num++) {
+                    replayList += '<li><a href="heat_content.html" data-refresh-ajax="true" onClick="setItem(' + "'id'," + jsondata[num]['id'] + ')"><img src="images/photos/' + jsondata[num]['path'] + '">;'
+                    replayList += '<div class="hotside"><p class="bigfont">';
+                    replayList += jsondata[num]['title'] + '</p>';
+                    replayList += '<p class="p_cont">' + jsondata[num]['cont'] + '</p></div><span class="skim">10浏览</span></a></li> '
+
+                }
+
+
+
+                $('.hotlist').append(replayList);
+
+
+            }
+        });
+        //数据请求结束
+    }
     

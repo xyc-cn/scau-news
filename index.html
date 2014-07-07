@@ -74,6 +74,7 @@
             imagesheight[i].height = imagesh;
         }
         <!--图片高度调整 -->
+        
         getdatas('校园快讯',0);
         getdatas('媒体华农',0);
         getdatas('校园通告',0);
@@ -87,11 +88,6 @@
             $('.infos').html(getItem($(event.target).html()));
             //alert($(event.target).html())
 
-        });
-        $(".loadmore").on('click', function(event) {
-            
-            getdatas($('.heightlight').html(),1);
-            $('.infos').html(getItem($('.heightlight').html()));
         });
 
         $.jsonP({
@@ -193,100 +189,72 @@
                            
                         </ul>
                     </article>
-                    <a href="#" class="loadmore">加载更多</a>
+                    <a href="" class="loadmore">加载更多</a>
                 </div>
 
                 <div id="leftTabBox" class="tabBox">
                     <div class="hd">
                         <ul>
                             <li>
-                                <a>国内</a>
+                                <a>电子校报</a>
                             </li>
                             <li>
-                                <a>国际</a>
-                            </li>
-                            <li>
-                                <a>时事</a>
+                                <a>红满堂热帖</a>
                             </li>
                         </ul>
                     </div>
                     <div class="bd">
+                        
                         <ul>
                             <li>
-                                <a href="#">官方明确感染H7N9高危人群</a>
+                                <a href="#">ACM程序设计世界总决赛落幕 中大华农跻身20强</a>
                             </li>
                             <li>
-                                <a href="#">台官员:将驱离进入钓岛大陆船</a>
+                                <a href="#">第二批历史建筑名单出炉</a>
                             </li>
                             <li>
-                                <a href="#">陈云长子吁学江泽民思想方法</a>
+                                <a href="#">立标杆增动力 做群众满意的省直机关好党员</a>
                             </li>
                             <li>
-                                <a href="#">央视批抗日剧目:比着俗争着二</a>
+                                <a href="#">致伙伴们即将开启的大学生活（节选）</a>
                             </li>
                             <li>
-                                <a href="#">网友:离3次结3次可避税国五条</a>
+                                <a href="#">最后一堂课 校长说些啥</a>
                             </li>
                             <li>
-                                <a href="#">足疗女子自称东北人引发血案</a>
+                                <a href="#">华农教授让大豆更高产</a>
                             </li>
                             <li>
-                                <a href="#">男性神秘“根浴”会所被调查</a>
+                                <a href="#">平行志愿有风险 需注意不同录取原则</a>
                             </li>
                             <li>
-                                <a href="#">女孩一年吃掉48公里长方便面</a>
+                                <a href="#">华农全面放开双学位 艺术生也可修读</a>
                             </li>
                         </ul>
                         <ul>
                             <li>
-                                <a href="#">日:沈阳军区部队开赴中朝边境</a>
+                                <a href="#">这么屌的老师，如何用心学习</a>
                             </li>
                             <li>
-                                <a href="#">印度核潜艇经我周边未被发现</a>
+                                <a href="#">毕业了但是我还是不懂</a>
                             </li>
                             <li>
-                                <a href="#">中国航母战斗群重防空轻反潜</a>
+                                <a href="#">纠结——兼职还是继续找实习？？</a>
                             </li>
                             <li>
-                                <a href="#">日本军车爆车胎造成一死一伤</a>
+                                <a href="#">请问华农附近有什么便宜的旅馆啊</a>
                             </li>
                             <li>
-                                <a href="#">韩媒称朝鲜导弹反复出仓回仓</a>
+                                <a href="#">实习招聘 or 暑期工招聘</a>
                             </li>
                             <li>
-                                <a href="#">美国空军因缺钱大量战机停飞</a>
+                                <a href="#">出租校园网账号两个月，10块/月</a>
                             </li>
                             <li>
-                                <a href="#">外媒:中国神盾舰多处落后日本</a>
+                                <a href="#">我想问下错过公共性选课怎么办</a>
                             </li>
                             <li>
-                                <a href="#">朝鲜东部海岸遍布导弹发射场</a>
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>
-                                <a href="#">农业占GDP低政府支持力度大</a>
-                            </li>
-                            <li>
-                                <a href="#">林志玲:至今珍藏本山送的手绢</a>
-                            </li>
-                            <li>
-                                <a href="#">五粮液高管年薪超茅台近一倍</a>
-                            </li>
-                            <li>
-                                <a href="#">视频:朝鲜导弹反复出舱</a>
-                            </li>
-                            <li>
-                                <a href="#">《我是歌手》明晚决赛开战</a>
-                            </li>
-                            <li>
-                                <a href="#">皖新传媒一年花13亿委托理财</a>
-                            </li>
-                            <li>
-                                <a href="#">男子驾车在高速路遭飞石袭击</a>
-                            </li>
-                            <li>
-                                <a href="#">东北低温寒冷程度历史罕见</a>
+                                <a href="#">这算是负能量么？</a>
                             </li>
                         </ul>
                     </div>
@@ -301,7 +269,7 @@
                     <li class="divider">招生在线</li>
                     <li>
 
-                        <a href="#aftransitions">本科生</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)" >本科生</a>
                     </li>
                     <li>
 
