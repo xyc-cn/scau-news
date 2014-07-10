@@ -25,7 +25,10 @@
 
     function getdatas(datatype,page) {
         var replayList ='';
-        
+        if(page==0&&getItem(datatype)&&getItem(datatype+'_time')&&(getTimestamp()-getItem(datatype+'_time'))<300){
+            return 0;
+        }
+        else{
         $.jsonP({
             url: serverURL + 'news/gettype.php?callback=?&&datatype=' + datatype+'&&page='+page,
             async:false,
@@ -39,14 +42,22 @@
                 }
                 
                 	setItem(datatype,replayList);
+                    //写入缓存
+                setItem(datatype,replayList);
+                setItem(datatype+'_time',getTimestamp());  //写入缓存的时候顺便写入缓存的时间
             }
         });
+    }
         
 
     }
 
     function gethot(){
-        
+        //缓存
+        if(getItem('hot')&&getItem('hot_time')&&(getTimestamp()-getItem('hot_time'))<7){
+            $('.hotlist').append(getItem('hot'));
+        }
+        else{
         $.jsonP({
             url: serverURL + 'news/getlist.php?callback=?&&page=0',
             success: function(data) {
@@ -64,10 +75,14 @@
 
 
                 $('.hotlist').append(replayList);
-
+                //写入缓存
+                setItem('hot',replayList);
+                setItem('hot_time',getTimestamp());  //写入缓存的时候顺便写入缓存的时间
 
             }
         });
+        }
         //数据请求结束
+    
     }
     

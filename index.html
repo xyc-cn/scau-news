@@ -1,17 +1,6 @@
 <!doctype html>
 <html lang="ch_CN">
 <head>
-    <script>
-            (function() {
-                if ("-ms-user-select" in document.documentElement.style && navigator.userAgent.match(/IEMobile\/10\.0/)) {
-                    var msViewportStyle = document.createElement("style");
-                    msViewportStyle.appendChild(
-                        document.createTextNode("@-ms-viewport{width:auto!important}")
-                    );
-                    document.getElementsByTagName("head")[0].appendChild(msViewportStyle);
-                }
-            })();
-        </script>
     <title>Document</title>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -74,7 +63,7 @@
             imagesheight[i].height = imagesh;
         }
         <!--图片高度调整 -->
-        
+
         getdatas('校园快讯',0);
         getdatas('媒体华农',0);
         getdatas('校园通告',0);
@@ -89,29 +78,7 @@
             //alert($(event.target).html())
 
         });
-
-        $.jsonP({
-            url: serverURL + 'news/getlist.php?callback=?&&page=0',
-            success: function(data) {
-                var replayList = '';
-                var jsondata = data;
-
-                for (var num = 0; num < data.length; num++) {
-                    replayList += '<li><a href="heat_content.html" data-refresh-ajax="true" onClick="setItem(' + "'id'," + jsondata[num]['id'] + ')"><img src="images/photos/' + jsondata[num]['path'] + '">;'
-                    replayList += '<div class="hotside"><p class="bigfont">';
-                    replayList += jsondata[num]['title'] + '</p>';
-                    replayList += '<p class="p_cont">' + jsondata[num]['cont'] + '</p></div><span class="skim">10浏览</span></a></li> '
-
-                }
-
-
-
-                $('.hotlist').append(replayList);
-
-
-            }
-        });
-        //数据请求结束
+        gethot();
 
     });
     /* This code is used to run as soon as appMobi activates */
@@ -273,58 +240,58 @@
                     </li>
                     <li>
 
-                        <a href="#afuidemo">研究生</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">研究生</a>
                     </li>
                     <li>
-                        <a href="#uiapi">继续教育</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">继续教育</a>
                     </li>
                     <li>
-                        <a href="#uiapi">国际招生</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">国际招生</a>
                     </li>
                     <li class="divider">就业在线</li>
                     <li>
-                        <a href="#aftransitions">就业信息平台</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">就业信息平台</a>
                     </li>
                     <li>
-                        <a href="#afuidemo">学生职业规划园</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">学生职业规划园</a>
                     </li>
 
                     <li class="divider">人才招聘</li>
                     <li>
-                        <a href="#aftransitions">需求信息</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">需求信息</a>
                     </li>
                     <li>
-                        <a href="#afuidemo">招聘启事</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">招聘启事</a>
                     </li>
 
                     <li class="divider">校友</li>
                     <li>
-                        <a href="#aftransitions">校友会</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">校友会</a>
                     </li>
                     <li>
-                        <a href="#afuidemo">校友风采</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">校友风采</a>
                     </li>
                     <li>
-                        <a href="#afuidemo">校友刊物</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">校友刊物</a>
                     </li>
                     <li>
-                        <a href="#afuidemo">百年校庆</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">百年校庆</a>
                     </li>
                     <li class="divider">网络服务</li>
                     <li>
-                        <a href="#aftransitions">教育在线</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">教育在线</a>
                     </li>
                     <li>
-                        <a href="#afuidemo">教务在线</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">教务在线</a>
                     </li>
                     <li>
-                        <a href="#afuidemo">教学资源</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">教学资源</a>
                     </li>
                     <li>
-                        <a href="#afuidemo">网络电视</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">网络电视</a>
                     </li>
                     <li>
-                        <a href="#afuidemo">网络保修</a>
+                        <a href="major_content.html" data-refresh-ajax="true"  onClick="setItems('titlename',this)">网络保修</a>
                     </li>
                     <li class="divider">教育基金会</li>
 

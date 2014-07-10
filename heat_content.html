@@ -1,9 +1,20 @@
 <div id="contentDIV" style="padding-bottom:100px;">
     <style type="text/css">
-    .reply_list p{
-        text-align: center;
-
+    #reply_content p span,#reply_content p,#reply_content p span br{
+        font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial !important;
+        text-indent: 2em !important;
+        line-height: 1.5 !important;
+        word-break: break-all !important;
+        color: #1d1d1d !important;
+        font-size: 17px !important;
     }
+    #reply_content h1{
+         font-family: "\5FAE\8F6F\96C5\9ED1","微软雅黑",helvetica,arial !important;
+         font-size: 20px;
+         margin: 18px 0;
+         font-weight: bold;
+    }
+
     .loading{
         padding-top: 40px;
         padding-bottom: 40px;
@@ -32,12 +43,12 @@
 
            	var replayList='';  
             var jsondata=data;    
-                        $.ui.setTitle(jsondata[0][1]);
-            
+                        $.ui.setTitle(jsondata[0][4]);
+                        
                     replayList+='<div class="reply_list">';
                     replayList+='<div class="clearfix forum_content_user">';
                    
-                    replayList+='<span>'+jsondata[0][0]+'</span><br />';              
+                    replayList+='<h1>'+jsondata[0][1]+'</h1><br />';              
                     replayList+='</div>';        
                     replayList+='</div>';      
                     replayList+='<p>'+jsondata[0][2]+'</p>';    

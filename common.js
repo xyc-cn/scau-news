@@ -1,7 +1,7 @@
 // JavaScript Document
 
 //网站的主域名
-var serverURL = 'http://172.16.42.101';
+var serverURL = 'http://localhost/';
 
 /*
 写入loclstorage缓存
